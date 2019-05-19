@@ -6,3 +6,16 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<h3>@ViewBag.EmailId</h3>
+<br />
+<h3>@ViewBag.UserModel1</h3>
+</br>
+@{
+
+    var userModel = ViewBag.UserModel2;
+
+}
+
+<h3>@userModel.UserName</h3>
+<h3>@userModel.Password</h3>

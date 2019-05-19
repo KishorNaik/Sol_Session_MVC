@@ -21,11 +21,11 @@ namespace Sol_Session.Controllers
 
             // Read Json Data
             UserModel userModel = JsonConvert.DeserializeObject<UserModel>(HttpContext.Session.GetString("UserModel1"));
-            ViewBag.UserModel = userModel;
+            ViewBag.UserModel1 = userModel;
 
             // Read Complex Data (Using Session Complex Class -> Extension Method)
             userModel = HttpContext.Session.GetData<UserModel>("UserModel2");
-            ViewBag.UserModel1 = userModel;
+            ViewBag.UserModel2 = userModel;
 
             return View();
         }
