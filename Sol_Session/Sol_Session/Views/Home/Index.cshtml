@@ -7,15 +7,12 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<h3>@ViewBag.EmailId</h3>
-<br />
-<h3>@ViewBag.UserModel1</h3>
-</br>
-@{
+@{ 
 
-    var userModel = ViewBag.UserModel2;
-
+    var userModelObj = ViewBag.UsersModel;
 }
 
-<h3>@userModel.UserName</h3>
-<h3>@userModel.Password</h3>
+<h1>User Details</h1>
+<div>
+    <h3>User Name : @userModelObj.UserName</h3>
+</div>

@@ -2,47 +2,46 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http; // Import
-using Sol_Session.Models.Users;
 using Newtonsoft.Json;
+using Sol_Session.Models;
 
 namespace Sol_Session.Controllers
 {
     public class LoginController : Controller
     {
+
+        #region Property
+        [BindProperty]
+        public UserModel Users { get; set; }
+        #endregion 
+
+        #region Public Methods
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult SignIn()
+        [HttpPost]
+        public IActionResult Login()
         {
-            // Single Data
-            HttpContext.Session.SetString("emailId", "kishor.naik011.net@gmail.com");
 
-            // Send Json Data
-            var userModel = new UserModel()
-            {
-                UserName = "Kishor",
-                Password = "1234"
-            };
+            string userModelJson = JsonConvert.SerializeObject(this.Users);
 
-            HttpContext.Session.SetString("UserModel1", JsonConvert.SerializeObject(userModel));
-
-            // send Complex Data  (SessionComplex Class -> Extension Method)
-            HttpContext.Session.SetData<UserModel>("UserModel2", userModel);
+            HttpContext.Session.SetString("userModel", userModelJson);
 
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpGet]
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("emailId");
-            HttpContext.Session.Remove("UserModel1");
-            HttpContext.Session.Remove("UserModel2");
+            HttpContext.Session.Clear();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
+        #endregion 
     }
 }

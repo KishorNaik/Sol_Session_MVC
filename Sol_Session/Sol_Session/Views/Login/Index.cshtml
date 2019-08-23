@@ -1,7 +1,25 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model Sol_Session.Models.UserModel 
+@{
+    Layout = null;
 }
 
-<h1>Index</h1>
+<!DOCTYPE html>
 
-<h3></h3>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <form asp-controller="Login" asp-action="Login">
+            <input id="txtUserName" type="text" placeholder="User Name" asp-for="UserName" />
+            <br />
+            <input id="txtPassword" type="password" placeholder="Password" asp-for="Password" />
+            <br />
+            <input id="btnSubmit" type="submit" value="Submit" />
+        </form>
+        
+    </div>
+</body>
+</html>

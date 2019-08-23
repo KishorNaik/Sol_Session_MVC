@@ -30,14 +30,15 @@ namespace Sol_Session
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddSessionStateTempDataProvider();
 
-            services.AddSession(option =>
-            {
-                option.IdleTimeout = TimeSpan.FromMinutes(5);
-            });
+            services.AddSession();
+
+            // Set DI
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +62,7 @@ namespace Sol_Session
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Login}/{action=SignIn}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
         }
     }

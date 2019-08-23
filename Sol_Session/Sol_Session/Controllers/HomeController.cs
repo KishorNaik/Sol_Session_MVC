@@ -7,25 +7,22 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Sol_Session.Models;
-using Sol_Session.Models.Users;
 
 namespace Sol_Session.Controllers
 {
     public class HomeController : Controller
     {
+
+        [BindProperty]
+        public UserModel Users { get; set; }
+
         public IActionResult Index()
         {
-            // Read Single Data
-            String emailid = HttpContext.Session.GetString("emailId");
-            ViewBag.EmailId = emailid;
+            string userModelJson = HttpContext.Session.GetString("userModel");
+         
+            this.Users = JsonConvert.DeserializeObject<UserModel>(userModelJson);
 
-            // Read Json Data
-            UserModel userModel = JsonConvert.DeserializeObject<UserModel>(HttpContext.Session.GetString("UserModel1"));
-            ViewBag.UserModel1 = userModel;
-
-            // Read Complex Data (Using Session Complex Class -> Extension Method)
-            userModel = HttpContext.Session.GetData<UserModel>("UserModel2");
-            ViewBag.UserModel2 = userModel;
+            ViewBag.UsersModel = this.Users;
 
             return View();
         }
