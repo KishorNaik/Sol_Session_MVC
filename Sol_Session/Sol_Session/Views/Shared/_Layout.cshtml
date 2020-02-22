@@ -31,6 +31,9 @@
             var userModel =
                     JsonConvert.DeserializeObject<UserModel>(userModelJson);
 
+
+            string str = httpContextAccessor.HttpContext.Session.GetString("Test");
+
         }
 
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">

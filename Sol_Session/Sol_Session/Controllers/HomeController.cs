@@ -22,6 +22,10 @@ namespace Sol_Session.Controllers
          
             this.Users = JsonConvert.DeserializeObject<UserModel>(userModelJson);
 
+
+            HttpContext.Session.SetString("Test", "Hello");
+
+
             ViewBag.UsersModel = this.Users;
 
             return View();
